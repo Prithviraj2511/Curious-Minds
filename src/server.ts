@@ -1,9 +1,23 @@
 import express from 'express';
 import { createConnection, Connection } from "typeorm";
-import { Article } from './entity/Article';
-import {User} from "./entity/User";
+// entities
+import { Article } from './entities/Article';
+import {User} from "./entities/User";
+// routes
+import {articlesRoute} from "./routes/articles"
+import {usersRoute} from "./routes/users"
+import {userRoute} from "./routes/user"
 
 const app = express()
+
+app.use(express.json());
+
+// setting up routes
+app.use('/api/users',usersRoute)
+app.use('/api/user',userRoute)
+app.use('/api/articles',articlesRoute)
+
+ 
 
 app.get('/', (req, res) => {
     res.send("Hello world!")
