@@ -12,7 +12,8 @@ route.post('/',async(req,res)=>{
         res.status(422).json({
             "errors": {
               "body": [
-                ""+e
+                "could not create a user",
+                e.message
               ]
             }
           })
