@@ -1,6 +1,6 @@
 import {Entity, Column, Not, PrimaryColumn} from "typeorm";
 
-@Entity()
+@Entity('users')
 export class User {
 
     @PrimaryColumn()
@@ -18,6 +18,7 @@ export class User {
     @Column({nullable:true})
     image?: string;
 
+    token?:string;
 }
 /*
     "email": "jake@jake.jake",

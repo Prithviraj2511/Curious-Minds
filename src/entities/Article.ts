@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import{User} from "./User.js";
 
-@Entity()
+@Entity('articles')
 export class Article{
 
     @PrimaryColumn({type:"varchar",length:40})
