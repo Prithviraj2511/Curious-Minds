@@ -68,3 +68,13 @@ export async function loginUser(data:UserLoginData):Promise<User> {
     // hiding some data from user
     return sanitizeFields(user)
 }
+
+export async function userByEmail(email:string) {
+    const userRepository = getRepository(User);
+    const user = await userRepository.findOne({email:email});
+    if(!user){
+        throw new Error('No user with this email')
+    }
+    return sanitizeFields(user)
+
+}
