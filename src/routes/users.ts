@@ -3,7 +3,7 @@ import { loginUser } from '../controllers/users'
 
 const route = Router()
 
-// Login user
+// POST users/login/    Login user
 route.post('/login', async (req, res) => {
     try {
         const user = await loginUser(req.body.user)
@@ -20,10 +20,10 @@ route.post('/login', async (req, res) => {
     }
 })
 
-// Get users
-route.get('/', (req, res) => {
-    res.send("GET users")
-})
+// // GET users/   
+// route.get('/', (req, res) => {
+//     res.send("GET users")
+// })
 
 // // Update current user
 // route.put('/',(req,res)=>{

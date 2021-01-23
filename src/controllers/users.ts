@@ -15,6 +15,13 @@ interface UserLoginData{
     password: string
 }
 
+interface UserUpdateData{
+    username?: string,
+    password?: string,
+    bio?:string,
+    image?:string
+}
+
 // creates new user
 export async function createUser(data: UserSignUpData):Promise<User> {
     // checking whether all fields are filled or not
@@ -77,4 +84,20 @@ export async function userByEmail(email:string) {
     }
     return sanitizeFields(user)
 
+}
+
+export async function updateUser(email:string,data:UserUpdateData):Promise<User> {
+    const userRepository = getRepository(User);
+    const user = await userRepository.findOne({email:email});
+    if(!user){
+        throw new Error('No user with this email')
+    }
+    if(data.username) user.username=data.username
+    if(data.password) user.password=await hashPassword(data.password)
+    if(data.bio) user.bio=data.bio
+    if(data.image) user.image=data.image
+    
+    const updatedUser=await userRepository.save(user)
+
+    return sanitizeFields(updatedUser)
 }
